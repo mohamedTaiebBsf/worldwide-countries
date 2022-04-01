@@ -14,4 +14,12 @@
   body {
     @apply font-light;
   }
+
+  .content {
+    @apply max-w-[1440px] m-auto p-5 sm:px-20 lg:px-0;
+  }
+
+  .element {
+    @apply bg-white dark:bg-primary-600 shadow;
+  }
 }

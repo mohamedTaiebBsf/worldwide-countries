@@ -11,6 +11,7 @@ import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switch
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { CountriesService } from './services/countries.service';
 import { CountryComponent } from './components/countries/country/country.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CountryComponent } from './components/countries/country/country.compone
     RegionFilterComponent,
     CountriesComponent,
     CountryComponent,
+    SpinnerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [CountriesService],

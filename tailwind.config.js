@@ -23,7 +23,7 @@ module.exports = {
           800: "#202c37", // Dark Mode Background
         },
         secondary: {
-          200: "#fafafa", // Light Mode Background
+          200: "#f7f7f7", // Light Mode Background
           600: "#858585", // Light Mode Input
         },
       },

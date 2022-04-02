@@ -13,5 +13,7 @@
     type="text"
     name="search"
     placeholder="Search for a country..."
+    [ngModel]="searchInput"
+    (ngModelChange)="onChange($event)"
   />
 </div>

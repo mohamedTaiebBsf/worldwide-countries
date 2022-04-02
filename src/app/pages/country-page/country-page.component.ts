@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CountriesService } from 'src/app/services/countries.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-country-page',
@@ -15,7 +15,7 @@ export class CountryPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private service: CountriesService
+    private service: ApiService
   ) {}
 
   goBack() {
@@ -27,12 +27,12 @@ export class CountryPageComponent implements OnInit {
       let countryName = params.get('name') as string;
       this.loading = true;
 
-      this.service.getCountryByName(countryName).subscribe((res: any) => {
+      this.service.getByName(countryName).subscribe((res: any) => {
         this.country = res[0];
         this.borders = [];
 
         for (let code of this.country.borders) {
-          this.service.getCountryByCode(code).subscribe((res: any) => {
+          this.service.getByCode(code).subscribe((res: any) => {
             this.borders.push(res[0].name.common);
           });
         }

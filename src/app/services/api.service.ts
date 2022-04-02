@@ -5,20 +5,20 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class CountriesService {
+export class ApiService {
   private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
-  getAllCountries() {
+  getAll() {
     return this.http.get(this.apiUrl + '/all');
   }
 
-  getCountryByName(name: string) {
+  getByName(name: string) {
     return this.http.get(this.apiUrl + '/name/' + name);
   }
 
-  getCountryByCode(code: string) {
+  getByCode(code: string) {
     return this.http.get(this.apiUrl + '/alpha/' + code);
   }
 }

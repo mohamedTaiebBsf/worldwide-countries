@@ -12,6 +12,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { CountriesService } from './services/countries.service';
 import { CountryComponent } from './components/countries/country/country.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { CountryPageComponent } from './pages/country-page/country-page.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     CountriesComponent,
     CountryComponent,
     SpinnerComponent,
+    CountryPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [CountriesService],

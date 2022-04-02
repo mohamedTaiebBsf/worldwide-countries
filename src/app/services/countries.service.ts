@@ -13,4 +13,12 @@ export class CountriesService {
   getAllCountries() {
     return this.http.get(this.apiUrl + '/all');
   }
+
+  getCountryByName(name: string) {
+    return this.http.get(this.apiUrl + '/name/' + name);
+  }
+
+  getCountryByCode(code: string) {
+    return this.http.get(this.apiUrl + '/alpha/' + code);
+  }
 }

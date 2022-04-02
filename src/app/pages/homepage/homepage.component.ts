@@ -14,10 +14,9 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
 
-    this.service.getAllCountries().subscribe((res) => {
+    this.service.getAllCountries().subscribe((res: any) => {
       this.loading = false;
-      this.countries = <any>res;
-      console.log('countries:', this.countries[0]);
+      this.countries = res;
     });
   }
 }

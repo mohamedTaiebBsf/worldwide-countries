@@ -16,10 +16,14 @@
   }
 
   .content {
-    @apply max-w-[1440px] m-auto p-5 sm:px-20 xl:px-0;
+    @apply max-w-[1440px] m-auto p-5 sm:px-20;
   }
 
   .element {
     @apply bg-white dark:bg-primary-600 shadow;
+  }
+
+  .svg {
+    @apply fill-black dark:fill-white;
   }
 }

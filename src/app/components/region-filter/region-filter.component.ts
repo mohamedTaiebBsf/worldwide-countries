@@ -1,12 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Component({
   selector: 'app-region-filter',
   templateUrl: './region-filter.component.html',
 })
-export class RegionFilterComponent implements OnInit {
+export class RegionFilterComponent {
   @Output('onFilter') onFilter = new EventEmitter();
   open: boolean = false;
+  inside: boolean = false;
   regions: string[] = [
     'All',
     'Africa',
@@ -17,10 +18,21 @@ export class RegionFilterComponent implements OnInit {
     'Antarctic',
   ];
 
+  @HostListener('click')
+  clicked() {
+    this.inside = true;
+  }
+
+  @HostListener('document:click')
+  clickedOut() {
+    if (!this.inside) {
+      this.open = false;
+    }
+
+    this.inside = false;
+  }
+
   onClick() {
     this.open = !this.open;
   }
-  constructor() {}
-
-  ngOnInit(): void {}
 }

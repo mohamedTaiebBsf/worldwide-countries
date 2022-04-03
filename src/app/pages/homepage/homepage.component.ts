@@ -21,25 +21,23 @@ export class HomepageComponent implements OnInit {
   ) {}
 
   onSearch(input: string) {
-    this.countries = [...this.restoreCountries];
-    this.countries = this.countryService.search(this.countries, input);
+    this.currentPage = 1;
+    this.countries = this.filter((this.currentRegion = 'all'));
+    this.countries = this.paginate(
+      this.countryService.search(this.countries, input)
+    );
   }
 
   onFilter(region: string) {
-    this.currentRegion = region.toLowerCase();
-    this.countries = [...this.restoreCountries];
-    this.countries = this.countryService.filter(this.countries, region);
     this.currentPage = 1;
+    this.currentRegion = region.toLowerCase();
+    this.pages = this.setPageRange(this.filter(region).length);
+    this.countries = this.paginate(this.countries);
   }
 
   onPageClick(page: number) {
     this.currentPage = page;
-    this.countries = [...this.restoreCountries];
-    this.countries = this.countryService.paginate(
-      this.countries,
-      this.currentPage,
-      this.perPage
-    );
+    this.countries = this.paginate(this.filter(this.currentRegion));
   }
 
   ngOnInit(): void {
@@ -47,15 +45,26 @@ export class HomepageComponent implements OnInit {
 
     this.service.getAll().subscribe((res: any) => {
       this.loading = false;
-      this.countries = this.countryService.paginate(
-        res,
-        this.currentPage,
-        this.perPage
-      );
-      this.pages = this.countryService.range(
-        Math.ceil(res.length / this.perPage)
-      );
+      this.countries = this.paginate(res);
+      this.pages = this.setPageRange(res.length);
       this.restoreCountries = [...res];
     });
+  }
+
+  private filter(region: string) {
+    this.countries = [...this.restoreCountries];
+
+    return (this.countries = this.countryService.filter(
+      this.countries,
+      region
+    ));
+  }
+
+  private paginate(data: any[]) {
+    return this.countryService.paginate(data, this.currentPage, this.perPage);
+  }
+
+  private setPageRange(len: number) {
+    return this.countryService.range(Math.ceil(len / this.perPage));
   }
 }

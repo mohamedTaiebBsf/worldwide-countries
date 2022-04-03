@@ -1,4 +1,8 @@
-<ul class="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<h1 *ngIf="countries.length === 0" class="text-xl">No Country found!</h1>
+<ul
+  *ngIf="countries.length > 0"
+  class="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+>
   <li *ngFor="let country of countries">
     <app-country [country]="country"></app-country>
   </li>

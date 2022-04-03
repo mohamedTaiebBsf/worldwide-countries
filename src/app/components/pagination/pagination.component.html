@@ -22,7 +22,7 @@
       *ngFor="let page of pages"
       routerLink="/"
       [queryParams]="{ p: page }"
-      class="pagination-item elementgap-3 px-4"
+      class="pagination-item element px-4"
       [class.dark:bg-primary-800]="page === currentPage"
       [class.bg-indigo-200]="page === currentPage"
       [class.z-10]="page === currentPage"
@@ -30,7 +30,7 @@
     >
       {{ page }}
     </a>
-    <a href="#" class="pagination-item elementgap35 rounded-r-md">
+    <a href="#" class="pagination-item element rounded-r-md">
       <span class="sr-only">Next</span>
       <svg
         class="h-5 w-5"

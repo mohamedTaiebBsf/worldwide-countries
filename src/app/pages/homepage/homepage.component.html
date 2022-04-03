@@ -9,5 +9,15 @@
       [currentRegion]="currentRegion"
     ></app-region-filter>
   </div>
-  <app-countries [countries]="countries" [loading]="loading"></app-countries>
+  <div class="mt-16">
+    <app-spinner *ngIf="loading"></app-spinner>
+    <app-countries *ngIf="!loading" [countries]="countries"></app-countries>
+    <app-pagination
+      *ngIf="!loading"
+      [pages]="pages"
+      [currentPage]="currentPage"
+      [perPage]="perPage"
+      (onPageClick)="onPageClick($event)"
+    ></app-pagination>
+  </div>
 </div>

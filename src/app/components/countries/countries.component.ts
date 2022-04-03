@@ -6,5 +6,4 @@ import { Component, Input } from '@angular/core';
 })
 export class CountriesComponent {
   @Input('countries') countries!: any[];
-  @Input('loading') loading?: boolean;
 }

@@ -10,4 +10,12 @@ export class CountryService {
       c.name.common.toLowerCase().includes(pattern)
     );
   }
+
+  filter(data: any, region: string) {
+    if (region.toLowerCase() === 'all') return data;
+
+    return data.filter(
+      (c: any) => c.region.toLowerCase() === region.toLowerCase()
+    );
+  }
 }

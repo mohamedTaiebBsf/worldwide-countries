@@ -21,6 +21,11 @@ export class HomepageComponent implements OnInit {
     this.countries = this.countryService.search(this.countries, input);
   }
 
+  onFilter(region: any) {
+    this.countries = [...this.restoreCountries];
+    this.countries = this.countryService.filter(this.countries, region);
+  }
+
   ngOnInit(): void {
     this.loading = true;
 

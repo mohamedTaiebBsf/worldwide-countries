@@ -1,1 +1,39 @@
-<p>region-filter works!</p>
+<div class="relative">
+  <button
+    class="element flex py-2.5 px-4 rounded-lg items-center cursor-pointer transition duration-300 ease-in-out"
+    (click)="onClick()"
+  >
+    Filter by Region
+    <svg
+      class="svg h-3 w-3 ml-5"
+      [class.rotate-180]="open"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 384 512"
+    >
+      <path
+        d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"
+      />
+    </svg>
+  </button>
+  <ul
+    class="element rounded-lg absolute w-full top-[115%] left-0 right-0 z-10 transition ease duration-300 cursor-pointer"
+    [ngClass]="{
+      'pointer-events-auto': open,
+      'translate-y-0': open,
+      visible: open,
+      'opacity-100': open,
+      'pointer-events-none': !open,
+      invisible: !open,
+      'opacity-0': !open,
+      '-translate-y-[15%]': !open
+    }"
+  >
+    <li
+      *ngFor="let region of regions"
+      (click)="onFilter.emit(region); open = false"
+      class="py-2.5 px-4 hover:bg-secondary-200 dark:hover:bg-primary-800"
+    >
+      {{ region }}
+    </li>
+  </ul>
+</div>

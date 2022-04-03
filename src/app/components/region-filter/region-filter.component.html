@@ -1,9 +1,9 @@
 <div class="relative">
   <button
-    class="element flex py-2.5 px-4 rounded-lg items-center cursor-pointer transition duration-300 ease-in-out"
+    class="element flex justify-between items-center py-2.5 px-4 rounded-lg cursor-pointer transition duration-300 ease-in-out w-44"
     (click)="onClick()"
   >
-    Filter by Region
+    {{ region === "all" ? "Filter by Region" : (region | titlecase) }}
     <svg
       class="svg h-3 w-3 ml-5"
       [class.rotate-180]="open"
@@ -29,11 +29,13 @@
     }"
   >
     <li
-      *ngFor="let region of regions"
-      (click)="onFilter.emit(region); open = false"
+      *ngFor="let reg of regions"
+      (click)="onFilter.emit(reg); open = false"
       class="py-2.5 px-4 hover:bg-secondary-200 dark:hover:bg-primary-800"
+      [class.bg-secondary-200]="region === reg"
+      [class.dark:bg-primary-800]="region === reg"
     >
-      {{ region }}
+      {{ reg | titlecase }}
     </li>
   </ul>
 </div>

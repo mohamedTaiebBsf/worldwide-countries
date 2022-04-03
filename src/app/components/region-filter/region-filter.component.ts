@@ -1,21 +1,29 @@
-import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-region-filter',
   templateUrl: './region-filter.component.html',
 })
 export class RegionFilterComponent {
+  @Input('currentRegion') region?: string;
   @Output('onFilter') onFilter = new EventEmitter();
+
   open: boolean = false;
   inside: boolean = false;
   regions: string[] = [
-    'All',
-    'Africa',
-    'Americas',
-    'Asia',
-    'Europe',
-    'Oceania',
-    'Antarctic',
+    'all',
+    'africa',
+    'americas',
+    'antarctic',
+    'asia',
+    'europe',
+    'oceania',
   ];
 
   @HostListener('click')

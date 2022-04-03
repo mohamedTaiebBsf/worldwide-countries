@@ -10,6 +10,7 @@ export class HomepageComponent implements OnInit {
   countries!: any[];
   restoreCountries: any[] = [];
   loading?: boolean;
+  currentRegion: string = 'all';
 
   constructor(
     private service: ApiService,
@@ -21,7 +22,8 @@ export class HomepageComponent implements OnInit {
     this.countries = this.countryService.search(this.countries, input);
   }
 
-  onFilter(region: any) {
+  onFilter(region: string) {
+    this.currentRegion = region.toLowerCase();
     this.countries = [...this.restoreCountries];
     this.countries = this.countryService.filter(this.countries, region);
   }

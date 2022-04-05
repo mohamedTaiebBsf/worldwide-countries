@@ -33,6 +33,16 @@ export class CountryService {
     return result;
   }
 
+  sortByName(data: any[]) {
+    data.sort(function (a: any, b: any) {
+      if (a.name.common < b.name.common) {
+        return -1;
+      } else return 1;
+    });
+
+    return data;
+  }
+
   range(num: number) {
     return [...Array(num).keys()].map((i: number) => i + 1);
   }

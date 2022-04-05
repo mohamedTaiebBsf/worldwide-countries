@@ -58,11 +58,11 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
 
-    this.service.getAll().subscribe((res: any) => {
+    this.service.getAll().subscribe((countries: any) => {
       this.loading = false;
-      this.countries = this.paginate(res);
-      this.pages = this.setPageRange(res.length);
-      this.restoreCountries = [...res];
+      this.countries = this.paginate(countries);
+      this.pages = this.setPageRange(countries.length);
+      this.restoreCountries = [...countries];
     });
   }
 

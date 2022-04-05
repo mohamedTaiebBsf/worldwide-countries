@@ -9,4 +9,6 @@ export class PaginationComponent {
   @Input('currentPage') currentPage!: number;
   @Input('perPage') perPage!: number;
   @Output('onPageClick') onPageClick = new EventEmitter();
+  @Output('onPrevious') onPrevious = new EventEmitter();
+  @Output('onNext') onNext = new EventEmitter();
 }

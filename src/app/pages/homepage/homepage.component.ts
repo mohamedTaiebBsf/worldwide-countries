@@ -23,6 +23,7 @@ export class HomepageComponent implements OnInit {
   onSearch(input: string) {
     this.currentPage = 1;
     this.countries = this.filter((this.currentRegion = 'all'));
+    this.pages = this.setPageRange(this.countries.length);
     this.countries = this.paginate(
       this.countryService.search(this.countries, input)
     );
@@ -37,6 +38,20 @@ export class HomepageComponent implements OnInit {
 
   onPageClick(page: number) {
     this.currentPage = page;
+    this.countries = this.paginate(this.filter(this.currentRegion));
+  }
+
+  onPrevious() {
+    if (this.currentPage === 1) return;
+
+    this.currentPage--;
+    this.countries = this.paginate(this.filter(this.currentRegion));
+  }
+
+  onNext() {
+    if (this.currentPage === this.pages.length) return;
+
+    this.currentPage++;
     this.countries = this.paginate(this.filter(this.currentRegion));
   }
 

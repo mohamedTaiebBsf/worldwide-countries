@@ -18,15 +18,20 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@ngx-env/builder:browser",
           "options": {
             "outputPath": "dist/countries-world",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/assets"],
-            "styles": ["src/index.css"],
+            "assets": [
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/leaflet/dist/leaflet.css",
+              "src/index.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -63,7 +68,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@ngx-env/builder:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "countries-world:build:production"
@@ -75,20 +80,24 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@ngx-env/builder:extract-i18n",
           "options": {
             "browserTarget": "countries-world:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@ngx-env/builder:karma",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/assets"],
-            "styles": ["src/index.css"],
+            "assets": [
+              "src/assets"
+            ],
+            "styles": [
+              "src/index.css"
+            ],
             "scripts": []
           }
         }

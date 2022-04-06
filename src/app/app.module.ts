@@ -16,6 +16,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ApiService } from './services/api.service';
 import { CountryService } from './services/country.service';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     SpinnerComponent,
     CountryPageComponent,
     PaginationComponent,
+    MapComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [ApiService, CountryService],

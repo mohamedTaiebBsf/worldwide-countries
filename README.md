@@ -1,27 +1,31 @@
-# CountriesWorld
+# Welcome! 👋
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+> This is a worldwide countries application Built with `Angular.js` and `Tailwindcss`.
+> It is a challenge from [Frontend Mentor](https://www.frontendmentor.io) with some extra customization.
 
-## Development server
+## Tech
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<div style="margin-bottom: 25px; display: flex; align-items:center;">
+    <img src="https://static.cdnlogo.com/logos/a/92/angular.svg" width="80" style="margin-right:15px;" />
+    <img src="https://static.cdnlogo.com/logos/t/58/tailwindcss.svg" width="50"   />
+</div>
 
-## Code scaffolding
+## _Installation_
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone or download this repository.
 
-## Build
+2. **Before starting the app**, It is **required** to Create `.env` file and define `NG_APP_API_URL` and `NG_APP_MAPBOX_ACCESS_TOKEN` environment variables.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   ```sh
+   NG_APP_API_URL=https://restcountries.com/v3.1
+   NG_APP_MAPBOX_ACCESS_TOKEN=your.access.token.from.mapbox.account
+   ```
 
-## Running unit tests
+3. run:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   ```sh
+   $ npm install
+   $ ng serve
+   ```
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Navigate to `http://localhost:4200\` and enjoy! 👋 🚀

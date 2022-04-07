@@ -17,7 +17,8 @@
 
   <div class="mt-14">
     <app-spinner *ngIf="loading"></app-spinner>
-    <div *ngIf="!loading">
+    <app-error [error]="error"></app-error>
+    <div *ngIf="!loading && country">
       <div class="flex items-start flex-wrap lg:flex-nowrap">
         <div class="flex justify-center mb-8 lg:mr-14 w-[100%] max-w-[320px]">
           <img
@@ -88,15 +89,30 @@
               </h5>
             </div>
           </div>
-          <div class="mt-10">
-            <h5 class="font-semibold text-lg">Border Countries:</h5>
-            <div class="mt-6 flex items-center gap-3 flex-wrap">
-              <a
-                *ngFor="let border of borders; last as last"
-                class="font-light element inline-block rounded-md px-2 py-1"
-                [routerLink]="['/country', border.toLowerCase()]"
-                >{{ border }}</a
+          <div
+            class="mt-10"
+            [class.flex]="borders.length === 0"
+            [class.items-center]="borders.length === 0"
+          >
+            <h5
+              class="font-semibold text-lg"
+              [class.mr-3]="borders.length === 0"
+            >
+              Border Countries:
+            </h5>
+            <div [class.mt-6]="borders.length > 0">
+              <div
+                *ngIf="borders.length > 0; else noBorders"
+                class="flex items-center gap-3 flex-wrap"
               >
+                <a
+                  *ngFor="let border of borders; last as last"
+                  class="font-light element inline-block rounded-md px-2 py-1"
+                  [routerLink]="['/country', border.toLowerCase()]"
+                  >{{ border }}</a
+                >
+              </div>
+              <ng-template #noBorders>-</ng-template>
             </div>
           </div>
         </div>

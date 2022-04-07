@@ -1,3 +1,5 @@
+import { NotFoundError } from './../../errors/not-Found-error';
+import { AppError } from './../../errors/app-error';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { CountryService } from './../../services/country.service';
@@ -7,13 +9,14 @@ import { CountryService } from './../../services/country.service';
   templateUrl: './homepage.component.html',
 })
 export class HomepageComponent implements OnInit {
-  countries!: any[];
+  countries!: any[] | null;
   restoreCountries: any[] = [];
-  loading?: boolean;
+  loading: boolean = false;
   currentRegion: string = 'all';
   currentPage: number = 1;
   perPage: number = 10;
   pages: number[] = [];
+  error: string = '';
 
   constructor(
     private service: ApiService,
@@ -22,18 +25,22 @@ export class HomepageComponent implements OnInit {
 
   onSearch(input: string) {
     this.currentPage = 1;
-    this.countries = this.filter((this.currentRegion = 'all'));
-    this.pages = this.setPageRange(this.countries.length);
-    this.countries = this.paginate(
-      this.countryService.search(this.countries, input)
-    );
+    if (this.countries !== null) {
+      this.countries = this.filter((this.currentRegion = 'all'));
+      this.pages = this.setPageRange(this.countries.length);
+      this.countries = this.paginate(
+        this.countryService.search(this.countries, input)
+      );
+    }
   }
 
   onFilter(region: string) {
     this.currentPage = 1;
     this.currentRegion = region.toLowerCase();
-    this.pages = this.setPageRange(this.filter(region).length);
-    this.countries = this.paginate(this.countries);
+    if (this.countries !== null) {
+      this.pages = this.setPageRange(this.filter(region).length);
+      this.countries = this.paginate(this.countries);
+    }
   }
 
   onPageClick(page: number) {
@@ -58,12 +65,19 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
 
-    this.service.getAll().subscribe((countries: any) => {
-      this.loading = false;
-      this.countries = this.paginate(countries);
-      this.pages = this.setPageRange(countries.length);
-      this.restoreCountries = [...countries];
-    });
+    this.service.getAll().subscribe(
+      (countries: any) => {
+        this.loading = false;
+        this.countries = this.paginate(countries);
+        this.pages = this.setPageRange(countries.length);
+        this.restoreCountries = [...countries];
+      },
+      (error: AppError) => {
+        this.loading = false;
+        this.countries = null;
+        this.error = this.service.setError(error);
+      }
+    );
   }
 
   private filter(region: string) {

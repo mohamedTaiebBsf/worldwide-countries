@@ -1,3 +1,5 @@
+import { CountryService } from './../../services/country.service';
+import { AppError } from '../../errors/app-error';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -8,14 +10,16 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './country-page.component.html',
 })
 export class CountryPageComponent implements OnInit {
-  country: any;
-  loading?: boolean;
+  country: any | null;
+  loading: boolean = false;
+  error: string = '';
   borders: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private service: ApiService
+    private service: ApiService,
+    private countryService: CountryService
   ) {}
 
   goBack() {
@@ -27,17 +31,28 @@ export class CountryPageComponent implements OnInit {
       let countryName = params.get('name') as string;
       this.loading = true;
 
-      this.service.getByName(countryName).subscribe((res: any) => {
-        this.country = res[0];
-        this.borders = [];
+      this.service.getByName(countryName).subscribe(
+        (country: any) => {
+          this.country = country;
+          this.borders = [];
 
-        for (let code of this.country.borders) {
-          this.service.getByCode(code).subscribe((res: any) => {
-            this.borders.push(res[0].name.common);
-          });
+          for (let code of this.country.borders) {
+            this.service.getByCode(code).subscribe(
+              (c: any) => {
+                this.borders.push(c.name.common);
+              },
+              (error: AppError) => console.log(error)
+            );
+          }
+          this.borders = this.countryService.sortByName(this.borders);
+          this.loading = false;
+        },
+        (error: AppError) => {
+          this.loading = false;
+          this.country = null;
+          this.error = this.service.setError(error);
         }
-        this.loading = false;
-      });
+      );
     });
   }
 }

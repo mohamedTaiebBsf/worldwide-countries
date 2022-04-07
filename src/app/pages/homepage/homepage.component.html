@@ -12,10 +12,7 @@
   <div class="mt-16">
     <app-spinner *ngIf="loading"></app-spinner>
     <app-error [error]="error"></app-error>
-    <app-countries
-      *ngIf="!loading && countries"
-      [countries]="countries"
-    ></app-countries>
+    <app-countries *ngIf="!loading && data" [countries]="data"></app-countries>
     <app-pagination
       *ngIf="!loading && pages.length > 1"
       [pages]="pages"

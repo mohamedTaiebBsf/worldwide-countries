@@ -18,44 +18,39 @@
   <div class="mt-14">
     <app-spinner *ngIf="loading"></app-spinner>
     <app-error [error]="error"></app-error>
-    <div *ngIf="!loading && country">
+    <div *ngIf="!loading && data">
       <div class="flex items-start flex-wrap lg:flex-nowrap">
         <div class="flex justify-center mb-8 lg:mr-14 w-[100%] max-w-[320px]">
           <img
             class="w-full"
-            src="{{ country.flags?.png }}"
-            alt="{{ country.name?.common | lowercase }}"
+            src="{{ data.flags?.png }}"
+            alt="{{ data.name?.common | lowercase }}"
           />
         </div>
         <div class="w-full">
-          <h1 class="text-2xl font-extrabold">{{ country.name.common }}</h1>
+          <h1 class="text-2xl font-extrabold">{{ data.name.common }}</h1>
           <div class="mt-5 flex justify-between items-start flex-wrap">
             <div class="mb-10 csm:mb-0">
               <h5 class="font-semibold mb-3">
                 Native Name:
-                <span class="font-light">{{ country.name.official }}</span>
+                <span class="font-light">{{ data.name.official }}</span>
               </h5>
               <h5 class="font-semibold mb-3">
                 Population:
-                <span class="font-light">{{
-                  country.population | number
-                }}</span>
+                <span class="font-light">{{ data.population | number }}</span>
               </h5>
               <h5 class="font-semibold mb-3">
                 Region:
-                <span class="font-light">{{ country.region }}</span>
+                <span class="font-light">{{ data.region }}</span>
               </h5>
               <h5 class="font-semibold mb-3">
                 Sub Region:
-                <span class="font-light">{{ country.subregion }}</span>
+                <span class="font-light">{{ data.subregion }}</span>
               </h5>
               <h5 class="font-semibold">
                 Capital:
-                <span
-                  class="font-light"
-                  *ngIf="country.capital; else noCapital"
-                >
-                  {{ country.capital[0] | titlecase }}
+                <span class="font-light" *ngIf="data.capital; else noCapital">
+                  {{ data.capital[0] | titlecase }}
                 </span>
                 <ng-template #noCapital>-</ng-template>
               </h5>
@@ -63,13 +58,13 @@
             <div>
               <h5 class="font-semibold mb-3">
                 Top Level Domain:
-                <span class="font-light">{{ country.tld[0] }}</span>
+                <span class="font-light">{{ data.tld[0] }}</span>
               </h5>
               <h5 class="font-semibold mb-3">
                 Currencies:
                 <span
                   *ngFor="
-                    let currency of country.currencies | keyvalue;
+                    let currency of data.currencies | keyvalue;
                     last as last
                   "
                   class="font-light"
@@ -79,10 +74,7 @@
               <h5 class="font-semibold">
                 Languages:
                 <span
-                  *ngFor="
-                    let lang of country.languages | keyvalue;
-                    last as last
-                  "
+                  *ngFor="let lang of data.languages | keyvalue; last as last"
                   class="font-light"
                   >{{ lang.value }} {{ last ? "" : ", " }}</span
                 >
@@ -119,8 +111,8 @@
         </div>
       </div>
       <app-map
-        [latitude]="country.latlng[0]"
-        [longitude]="country.latlng[1]"
+        [latitude]="data.latlng[0]"
+        [longitude]="data.latlng[1]"
       ></app-map>
     </div>
   </div>

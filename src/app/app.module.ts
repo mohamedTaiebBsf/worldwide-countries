@@ -21,6 +21,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ApiService } from './services/api.service';
 import { CountryService } from './services/country.service';
 import { NotificationService } from './services/notification.service';
+import { StorageService } from './services/storage.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { NotificationService } from './services/notification.service';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [ApiService, CountryService, NotificationService],
+  providers: [ApiService, CountryService, NotificationService, StorageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

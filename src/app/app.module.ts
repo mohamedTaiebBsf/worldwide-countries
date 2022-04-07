@@ -22,6 +22,7 @@ import { ApiService } from './services/api.service';
 import { CountryService } from './services/country.service';
 import { NotificationService } from './services/notification.service';
 import { StorageService } from './services/storage.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { StorageService } from './services/storage.service';
     PaginationComponent,
     MapComponent,
     ErrorComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

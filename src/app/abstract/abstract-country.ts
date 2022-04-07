@@ -3,7 +3,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AppError } from './../errors/app-error';
 import { CountryService } from './../services/country.service';
 
-@Component({ template: '' })
+@Component({ template: '', host: { class: 'flex-1' } })
 export abstract class AbstractCountry implements OnInit {
   data: any | any[] | null;
   loading: boolean = false;

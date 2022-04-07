@@ -1,8 +1,9 @@
 <div [class.dark]="isDark">
   <div
-    class="bg-secondary-200 text-black dark:bg-primary-800 dark:text-white min-h-screen"
+    class="bg-secondary-200 text-black dark:bg-primary-800 dark:text-white min-h-screen flex flex-col"
   >
     <app-header (onThemeSwitch)="onThemeSwitch()"></app-header>
     <router-outlet></router-outlet>
+    <app-footer></app-footer>
   </div>
 </div>

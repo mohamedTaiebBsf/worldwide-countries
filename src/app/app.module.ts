@@ -2,6 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CountriesComponent } from './components/countries/countries.component';
@@ -18,6 +20,7 @@ import { CountryPageComponent } from './pages/country-page/country-page.componen
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ApiService } from './services/api.service';
 import { CountryService } from './services/country.service';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -35,8 +38,15 @@ import { CountryService } from './services/country.service';
     MapComponent,
     ErrorComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [ApiService, CountryService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+  ],
+  providers: [ApiService, CountryService, NotificationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

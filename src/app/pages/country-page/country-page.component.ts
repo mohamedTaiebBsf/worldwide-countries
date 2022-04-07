@@ -1,9 +1,9 @@
-import { CountryService } from './../../services/country.service';
-import { AppError } from '../../errors/app-error';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { AppError } from '../../errors/app-error';
+import { CountryService } from './../../services/country.service';
 
 @Component({
   selector: 'app-country-page',
@@ -13,6 +13,7 @@ export class CountryPageComponent implements OnInit {
   country: any | null;
   loading: boolean = false;
   error: string = '';
+  bordersError: string = '';
   borders: string[] = [];
 
   constructor(
@@ -41,7 +42,8 @@ export class CountryPageComponent implements OnInit {
               (c: any) => {
                 this.borders.push(c.name.common);
               },
-              (error: AppError) => console.log(error)
+              (error: AppError) =>
+                (this.bordersError = 'Unable to fetch borders!')
             );
           }
           this.borders = this.countryService.sortByName(this.borders);

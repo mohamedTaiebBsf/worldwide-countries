@@ -102,7 +102,7 @@
             </h5>
             <div [class.mt-6]="borders.length > 0">
               <div
-                *ngIf="borders.length > 0; else noBorders"
+                *ngIf="borders.length > 0 && !bordersError; else noBorders"
                 class="flex items-center gap-3 flex-wrap"
               >
                 <a
@@ -114,6 +114,7 @@
               </div>
               <ng-template #noBorders>-</ng-template>
             </div>
+            <app-error [error]="bordersError"></app-error>
           </div>
         </div>
       </div>

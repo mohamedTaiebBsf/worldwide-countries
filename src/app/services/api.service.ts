@@ -1,11 +1,12 @@
-import { NotFoundError } from './../errors/not-Found-error';
-import { AppError } from './../errors/app-error';
-import { CountryService } from './country.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { from } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { AppError } from './../errors/app-error';
+import { NotFoundError } from './../errors/not-Found-error';
+import { CountryService } from './country.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-    private countryService: CountryService
+    private countryService: CountryService,
+    private notification: NotificationService
   ) {}
 
   getAll() {
@@ -40,7 +42,7 @@ export class ApiService {
 
   getByCode(code: string) {
     return this.http
-      .get(this.apiUrl + '/alphai/' + code)
+      .get(this.apiUrl + '/alpha/' + code)
       .pipe(map((res: any) => res[0]))
       .pipe(
         catchError((error: Response) => {
@@ -51,9 +53,16 @@ export class ApiService {
 
   setError(error: AppError): string {
     if (error instanceof NotFoundError) {
-      return `Bad Request to the API:  ${error.originalError.error.message}`;
+      this.notification.error(error.originalError.error.message, '404 Error');
+
+      return `Bad Request to the API!`;
     } else {
-      return `Unexpected Error from the server: Please, Try it later! - ${error.originalError.error.message}`;
+      this.notification.error(
+        `Please, Try it later! - ${error.originalError.error.message}`,
+        'Unexpected Error'
+      );
+
+      return '';
     }
   }
 

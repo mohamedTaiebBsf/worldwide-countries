@@ -5,10 +5,8 @@
 
 ## Tech
 
-<div style="margin-bottom: 25px; display: flex; align-items:center;">
-    <img src="https://static.cdnlogo.com/logos/a/92/angular.svg" width="80" style="margin-right:15px;" />
-    <img src="https://static.cdnlogo.com/logos/t/58/tailwindcss.svg" width="50"   />
-</div>
+- [Angular.js](https://angularjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## _Installation_
 

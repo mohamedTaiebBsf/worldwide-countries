@@ -23,6 +23,7 @@ import { CountryService } from './services/country.service';
 import { NotificationService } from './services/notification.service';
 import { StorageService } from './services/storage.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MapComponent,
     ErrorComponent,
     FooterComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

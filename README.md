@@ -3,6 +3,10 @@
 > This is a worldwide countries application Built with `Angular.js` and `Tailwindcss`.
 > It is a challenge from [Frontend Mentor](https://www.frontendmentor.io) with some extra customization.
 
+## Demo 🚀
+
+[https://worldwide-countries.netlify.app/](https://worldwide-countries.netlify.app/)
+
 ## Tech
 
 - [Angular.js](https://angularjs.org/)
@@ -26,4 +30,4 @@
    $ ng serve
    ```
 
-4. Navigate to `http://localhost:4200\` and enjoy! 👋 🚀
+4. Navigate to `http://localhost:4200/` and enjoy! 👋 🚀

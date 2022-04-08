@@ -29,9 +29,16 @@ export class MapComponent implements OnInit {
 
     this.map.flyTo([this.latitude, this.longitude], 5);
 
-    let icon = new L.Icon.Default();
-    icon.options.shadowSize = [0, 0];
-    icon.options.shadowUrl = '';
+    const icon = L.icon({
+      iconUrl: 'assets/img/marker-icon.png',
+      iconRetinaUrl: 'assets/img/marker-icon-2x.png',
+      shadowUrl: 'assets/img/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41],
+    });
 
     L.marker([this.latitude, this.longitude], { icon }).addTo(this.map);
   }

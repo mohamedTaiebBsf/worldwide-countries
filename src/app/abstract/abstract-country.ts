@@ -75,10 +75,13 @@ export abstract class AbstractCountry implements OnInit {
     this.data = country;
     this.borders = [];
 
-    for (let code of this.data.borders) {
-      this.fetchByCode(code);
+    if (this.data.borders) {
+      for (let code of this.data.borders) {
+        this.fetchByCode(code);
+      }
+      this.borders = this.countryService.sortByName(this.borders);
     }
-    this.borders = this.countryService.sortByName(this.borders);
+
     this.loading = false;
   }
 
